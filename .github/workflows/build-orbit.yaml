@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: $FLEET_TAG
+          ref: ${{ env.FLEET_TAG }}
 
       - name: Import signing keys
         env:

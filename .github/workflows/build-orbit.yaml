@@ -1,4 +1,4 @@
-name: Build, Sign and Notarize Orbit for macOS
+name: Build, Sign and Notarize Fleetd for macOS
 
 on:
   workflow_dispatch: # allow manual action
@@ -13,7 +13,7 @@ on:
       - '.github/workflows/build-orbit.yaml'
 
 env:
-  ORBIT_VERSION: 1.17.0
+  FLEET_TAG: fleet-v4.41.0
   CGO_ENABLED: 1
 
 # This allows a subsequently queued workflow run to interrupt previous runs
@@ -34,7 +34,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        uses: actions/checkout@v4
+        with:
+          ref: $FLEET_TAG
 
       - name: Import signing keys
         env:
